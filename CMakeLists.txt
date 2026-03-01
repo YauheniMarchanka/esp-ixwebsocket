@@ -2,7 +2,7 @@
 # IXWebSocket Component Configuration
 # ==============================================================================
 
-# Core library source files
+# List of source files
 set(ixwebsocket_sources
     "ixwebsocket/IXBench.cpp"
     "ixwebsocket/IXCancellationRequest.cpp"
@@ -46,26 +46,27 @@ set(ixwebsocket_sources
 
 # --- Component Registration ---------------------------------------------------
 
-# INCLUDE_DIRS: "." allows including headers via <ixwebsocket/Header.h>
-# REQUIRES: Public dependencies required by the library headers
-# PRIV_REQUIRES: Private dependencies used in the implementation files
+# REQUIRES mbedtls and esp-tls are mandatory for SSL functionality in IDF v5
 idf_component_register(
     SRCS "${ixwebsocket_sources}"
     INCLUDE_DIRS "." "compat"
-    REQUIRES mbedtls  esp-tls
+    REQUIRES mbedtls esp-tls
     PRIV_REQUIRES lwip esp_event
+)
+
+# --- MbedTLS Header Path Fix --------------------------------------------------
+
+# This is a workaround for ESP-IDF v5.x where internal mbedtls headers 
+# (like ctr_drbg.h) are not automatically added to the include path.
+idf_component_get_property(mbedtls_lib mbedtls COMPONENT_LIB)
+target_include_directories(${COMPONENT_LIB} PRIVATE 
+    $<TARGET_PROPERTY:${mbedtls_lib},INTERFACE_INCLUDE_DIRECTORIES>
 )
 
 # --- Compiler Definitions -----------------------------------------------------
 
-# PUBLIC definitions are propagated to any target linking against this component
 target_compile_definitions(${COMPONENT_LIB} PUBLIC 
     IXWEBSOCKET_USE_MBED_TLS
-    # Identifies the environment as ESP32 (LWIP/non-POSIX specific)
+    # Marks the build environment as ESP32 (LWIP/non-POSIX specific)
     IXWEBSOCKET_USE_ESP32 
 )
-
-# --- Performance & Compatibility Options --------------------------------------
-
-# Optional: Disable C++ exceptions if not enabled in sdkconfig to save RAM/Flash
-# target_compile_options(${COMPONENT_LIB} PRIVATE "-fno-exceptions")
