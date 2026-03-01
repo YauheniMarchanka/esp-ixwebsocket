@@ -43,9 +43,11 @@ set(ixwebsocket_sources
 # Register the component
 # We use "." to allow #include <ixwebsocket/IXWebSocket.h>
 # We include "compat" for our POSIX fixes
+# We use REQUIRES (public) for mbedtls and esp_tls because your headers 
+# include their files, and any project using your library needs them too.
 idf_component_register(SRCS ${ixwebsocket_sources}
                        INCLUDE_DIRS "." "compat"
-                       REQUIRES mbedtls
+                       REQUIRES mbedtls esp_tls
                        PRIV_REQUIRES lwip esp_event)
 
 # Configuration flags for ESP32 environment
