@@ -6,8 +6,6 @@ url: "https://github.com/YauheniMarchanka/esp-ixwebsocket"
 # Managed dependencies ensure correct include paths for MbedTLS 3.x
 dependencies:
   idf: ">=5.0"
-  espressif/mbedtls: "^3.0.0"
-  espressif/esp-tls: "*"
 
 targets:
   - esp32
