@@ -46,12 +46,20 @@ set(ixwebsocket_sources
 
 # --- Component Registration ---------------------------------------------------
 
-# In IDF 5.x, explicitly list all components that provide headers you include.
-# 'mbedtls' and 'esp-tls' are required for SSL/TLS headers.
 idf_component_register(
     SRCS "${ixwebsocket_sources}"
     INCLUDE_DIRS "." "compat"
-    REQUIRES mbedtls esp-tls lwip esp_event
+    REQUIRES mbedtls esp-tls
+    PRIV_REQUIRES lwip esp_event
+)
+
+# --- MbedTLS Header Path Fix --------------------------------------------------
+
+# Based on your 'find' result, we need to point exactly to 'mbedtls/include'
+# inside the mbedtls component directory.
+idf_component_get_property(mbedtls_dir mbedtls COMPONENT_DIR)
+target_include_directories(${COMPONENT_LIB} PRIVATE 
+    "${mbedtls_dir}/mbedtls/include"
 )
 
 # --- Compiler Definitions -----------------------------------------------------
