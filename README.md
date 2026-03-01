@@ -27,4 +27,4 @@ Add this repository to your project's `components` folder:
 ```bash
 mkdir -p components
 cd components
-git clone [https://github.com/YauheniMarchanka/esp-ixwebsocket.git](https://github.com/YauheniMarchanka/esp-ixwebsocket.git) IXWebSocket
+git clone https://github.com/YauheniMarchanka/esp-ixwebsocket.git IXWebSocket
