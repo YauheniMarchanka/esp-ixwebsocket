@@ -46,25 +46,26 @@ set(ixwebsocket_sources
 
 # --- Component Registration ---------------------------------------------------
 
+# INCLUDE_DIRS: "." allows including headers via <ixwebsocket/Header.h>
+# REQUIRES: Public dependencies. mbedtls and esp-tls are now managed via YAML 
+# to ensure correct header discovery in ESP-IDF v5.x.
 idf_component_register(
     SRCS "${ixwebsocket_sources}"
     INCLUDE_DIRS "." "compat"
-    REQUIRES mbedtls esp-tls
-    PRIV_REQUIRES lwip esp_event
-)
-
-# --- MbedTLS Header Path Fix --------------------------------------------------
-
-# Based on your 'find' result, we need to point exactly to 'mbedtls/include'
-# inside the mbedtls component directory.
-idf_component_get_property(mbedtls_dir mbedtls COMPONENT_DIR)
-target_include_directories(${COMPONENT_LIB} PRIVATE 
-    "${mbedtls_dir}/mbedtls/include"
+    REQUIRES mbedtls esp-tls lwip esp_event
 )
 
 # --- Compiler Definitions -----------------------------------------------------
 
+# PUBLIC definitions are propagated to any target linking against this component
 target_compile_definitions(${COMPONENT_LIB} PUBLIC 
+    # Use MbedTLS for SSL/TLS operations
     IXWEBSOCKET_USE_MBED_TLS
+    # Identifies the environment as ESP32 (LWIP/non-POSIX specific)
     IXWEBSOCKET_USE_ESP32 
 )
+
+# --- Performance & Compatibility Options --------------------------------------
+
+# Optional: Disable C++ exceptions if not enabled in sdkconfig to save RAM/Flash
+# target_compile_options(${COMPONENT_LIB} PRIVATE "-fno-exceptions")
