@@ -1,0 +1,17 @@
+# Игнорируем результаты сборки
+build/
+sdkconfig
+sdkconfig.old
+
+# Временные файлы редакторов
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log

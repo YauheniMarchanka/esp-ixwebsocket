@@ -1,0 +1,31 @@
+# The name of the component
+name: "esp-ixwebsocket"
+
+# The version of the component. Use semantic versioning (https://semver.org/)
+version: "1.0.0"
+
+# Short description of the component
+description: "Professional port of IXWebSocket for ESP-IDF v5.x. Optimized for MbedTLS 3.x and LWIP."
+
+# Link to the project homepage or repository
+url: "https://github.com/ymarchanka/esp-ixwebsocket"
+
+# Target framework and versions
+dependencies:
+  idf: ">=5.0"
+
+# List of supported targets
+targets:
+  - esp32
+  - esp32s2
+  - esp32s3
+  - esp32c3
+  - esp32c6
+
+# Tags to help others find your component in the ESP Component Registry
+tags:
+  - websocket
+  - networking
+  - mbedtls
+  - cpp
+  - http-client
