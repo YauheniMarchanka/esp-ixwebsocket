@@ -1,8 +1,9 @@
 # IXWebSocket for ESP-IDF
 
-![Build Status](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions/workflows/build.yml/badge.svg)
-![License](https://img.shields.io/github/license/YauheniMarchanka/esp-ixwebsocket)
-![ESP-IDF Version](https://img.shields.io/badge/ESP--IDF-v5.x-blue)
+[![Build Component](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions/workflows/build.yml/badge.svg)](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions)
+[![License](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](https://github.com/YauheniMarchanka/esp-ixwebsocket/blob/main/LICENSE)
+[![ESP-IDF](https://img.shields.io/badge/ESP--IDF-v5.x-blue.svg)](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html)
+
 
 A specialized port of the [IXWebSocket](https://github.com/machinezone/IXWebSocket) library specifically tailored for the **ESP-IDF v5.x** framework (ESP32 series).
 
