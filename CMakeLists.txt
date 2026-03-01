@@ -1,4 +1,8 @@
-# List of source files for the IXWebSocket library
+# ==============================================================================
+# IXWebSocket Component Configuration
+# ==============================================================================
+
+# Core library source files
 set(ixwebsocket_sources
     "ixwebsocket/IXBench.cpp"
     "ixwebsocket/IXCancellationRequest.cpp"
@@ -40,21 +44,28 @@ set(ixwebsocket_sources
     "ixwebsocket/IXWebSocketTransport.cpp"
 )
 
-# Register the component
-# We use "." to allow #include <ixwebsocket/IXWebSocket.h>
-# We include "compat" for our POSIX fixes
-# We use REQUIRES (public) for mbedtls and esp_tls because your headers 
-# include their files, and any project using your library needs them too.
-idf_component_register(SRCS ${ixwebsocket_sources}
-                       INCLUDE_DIRS "." "compat"
-                       REQUIRES mbedtls esp_tls
-                       PRIV_REQUIRES lwip esp_event)
+# --- Component Registration ---------------------------------------------------
 
-# Configuration flags for ESP32 environment
+# INCLUDE_DIRS: "." allows including headers via <ixwebsocket/Header.h>
+# REQUIRES: Public dependencies required by the library headers
+# PRIV_REQUIRES: Private dependencies used in the implementation files
+idf_component_register(
+    SRCS "${ixwebsocket_sources}"
+    INCLUDE_DIRS "." "compat"
+    REQUIRES mbedtls esp-tls
+    PRIV_REQUIRES lwip esp_event
+)
+
+# --- Compiler Definitions -----------------------------------------------------
+
+# PUBLIC definitions are propagated to any target linking against this component
 target_compile_definitions(${COMPONENT_LIB} PUBLIC 
     IXWEBSOCKET_USE_MBED_TLS
+    # Identifies the environment as ESP32 (LWIP/non-POSIX specific)
     IXWEBSOCKET_USE_ESP32 
 )
 
-# Explicitly add the include directory to the target to ensure the example sees it
-target_include_directories(${COMPONENT_LIB} INTERFACE ".")
+# --- Performance & Compatibility Options --------------------------------------
+
+# Optional: Disable C++ exceptions if not enabled in sdkconfig to save RAM/Flash
+# target_compile_options(${COMPONENT_LIB} PRIVATE "-fno-exceptions")
