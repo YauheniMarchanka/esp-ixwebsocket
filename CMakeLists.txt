@@ -52,7 +52,7 @@ set(ixwebsocket_sources
 idf_component_register(
     SRCS "${ixwebsocket_sources}"
     INCLUDE_DIRS "." "compat"
-    REQUIRES mbedtls esp-tls
+    REQUIRES mbedtls  esp-tls
     PRIV_REQUIRES lwip esp_event
 )
 

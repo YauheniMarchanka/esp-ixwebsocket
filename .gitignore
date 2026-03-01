@@ -20,3 +20,4 @@ Thumbs.db
 setup_readme.py
 
 dependencies.lock
+examples/client/sdkconfig
