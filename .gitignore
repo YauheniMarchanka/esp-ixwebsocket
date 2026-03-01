@@ -18,3 +18,5 @@ Thumbs.db
 
 # Helper script for README generation
 setup_readme.py
+
+dependencies.lock
