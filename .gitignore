@@ -1,20 +1,20 @@
-# Игнорируем результаты сборки
+# Build artifacts
 build/
 sdkconfig
 sdkconfig.old
 
-# Временные файлы редакторов
+# Editor-specific files and folders
 .vscode/
 .idea/
 *.swp
 *.bak
 
-# Системные файлы
+# System-specific files
 .DS_Store
 Thumbs.db
 
-# Логи
+# Logs
 *.log
 
-# Генератор файла ReadMe
+# Helper script for README generation
 setup_readme.py

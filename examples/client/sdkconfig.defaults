@@ -1,0 +1,8 @@
+# Required for the interrupt mechanism (EventFD) to work correctly within the LWIP stack
+CONFIG_LWIP_POSIX_INTERNAL_EVENT_WAKEUP=y
+
+# Enables dynamic allocation of SSL/TLS buffers to significantly reduce RAM usage
+CONFIG_MBEDTLS_DYNAMIC_BUFFER_MANAGEMENT=y
+
+# Uncomment the following line if you need compression support (requires ZLIB)
+# CONFIG_ZLIB_SUPPORT=y

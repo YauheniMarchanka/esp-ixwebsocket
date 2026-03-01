@@ -25,5 +25,5 @@ jobs:
         with:
           esp_idf_version: ${{ matrix.idf_ver }}
           target: ${{ matrix.target }}
-          path: '.'
+          path: 'examples/client''
 
