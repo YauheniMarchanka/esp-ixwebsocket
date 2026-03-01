@@ -1,3 +1,4 @@
+# List of source files for the IXWebSocket library
 set(ixwebsocket_sources
     "ixwebsocket/IXBench.cpp"
     "ixwebsocket/IXCancellationRequest.cpp"
@@ -39,16 +40,19 @@ set(ixwebsocket_sources
     "ixwebsocket/IXWebSocketTransport.cpp"
 )
 
-# Добавляем папку compat в пути поиска заголовочных файлов
+# Register the component
+# We use "." to allow #include <ixwebsocket/IXWebSocket.h>
+# We include "compat" for our POSIX fixes
 idf_component_register(SRCS ${ixwebsocket_sources}
                        INCLUDE_DIRS "." "compat"
-                       PRIV_INCLUDE_DIRS "ixwebsocket"
                        REQUIRES mbedtls
                        PRIV_REQUIRES lwip esp_event)
 
-# Флаги для корректной работы IXWebSocket на ESP32
+# Configuration flags for ESP32 environment
 target_compile_definitions(${COMPONENT_LIB} PUBLIC 
     IXWEBSOCKET_USE_MBED_TLS
-    # Этот флаг часто помогает библиотеке понять, что мы в среде без полного POSIX
     IXWEBSOCKET_USE_ESP32 
 )
+
+# Explicitly add the include directory to the target to ensure the example sees it
+target_include_directories(${COMPONENT_LIB} INTERFACE ".")

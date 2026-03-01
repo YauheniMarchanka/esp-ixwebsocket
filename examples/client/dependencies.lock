@@ -1,0 +1,24 @@
+dependencies:
+  esp-ixwebsocket:
+    dependencies:
+    - name: idf
+      version: '>=5.0'
+    source:
+      path: /home/ym/work/esp/esp-ixwebsocket
+      type: local
+    targets:
+    - esp32
+    - esp32s2
+    - esp32s3
+    - esp32c3
+    - esp32c6
+    version: 1.0.0
+  idf:
+    source:
+      type: idf
+    version: 5.5.3
+direct_dependencies:
+- esp-ixwebsocket
+manifest_hash: 4902654bd17f8c14304c8753c675705e0224e9f7315722cb27e8478f1b9ae540
+target: esp32
+version: 2.0.0
