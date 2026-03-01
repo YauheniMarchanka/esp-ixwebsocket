@@ -1,7 +1,7 @@
 # IXWebSocket for ESP-IDF
 
-[![Build Status](https://github.com/ymarchanka/esp-ixwebsocket/actions/workflows/build.yml/badge.svg)!https://github.com/ymarchanka/esp-ixwebsocket/actions)
-[![License](https://img.shields.io/github/license/ymarchanka/esp-ixwebsocket)
+[![Build Status](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions/workflows/build.yml/badge.svg)!https://github.com/YauheniMarchanka/esp-ixwebsocket/actions)
+[![License](https://img.shields.io/github/license/YauheniMarchanka/esp-ixwebsocket)
 [![ESP-IDF Version](https://img.shields.io/badge/ESP--IDF-v5.x-blue)
 
 A specialized port of the [IXWebSocket](https://github.com/machinezone/IXWebSocket) library specifically tailored for the **ESP-IDF v5.x** framework (ESP32 series).
@@ -26,7 +26,7 @@ This project is a modified version of the original IXWebSocket library by **Mach
 Add this to your project's `idf_component.yml` file:
 ```yaml
 dependencies:
-  ymarchanka/esp-ixwebsocket: "^1.0.0"
+  YauheniMarchanka/esp-ixwebsocket: "^1.0.0"
 ```
 
 ### Method 2: As a Classic Component
@@ -34,13 +34,13 @@ Clone this repository into your project's `components` directory:
 ```bash
 mkdir -p components
 cd components
-git clone https://github.com/ymarchanka/esp-ixwebsocket.git IXWebSocket
+git clone https://github.com/YauheniMarchanka/esp-ixwebsocket.git IXWebSocket
 ```
 
 ## Usage Examples
 
 ### 1. WebSocket Client Example
-``gcpp
+```cpp
 #include <ixwebsocket/IXWebSocket.h>
 
 void setup_websocket() {
@@ -55,7 +55,7 @@ void setup_websocket() {
         }
     });
     
-    ({HwebSocket.start();
+    webSocket.start();
 }
 ```
 
@@ -81,7 +81,7 @@ void http_get_example() {
         printf("HTTP Error: %s\n", response->errorMsg.c_s4r());
     }
 }
-```x
+```
 
 ## Configuration
 
