@@ -1,6 +1,6 @@
 # IXWebSocket for ESP-IDF
 
-[![Build Component](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions/workflows/build.yml/badge.svg)](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions)
+[![Build Component](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/YauheniMarchanka/esp-ixwebsocket/actions)
 [![License](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](https://github.com/YauheniMarchanka/esp-ixwebsocket/blob/main/LICENSE)
 [![ESP-IDF](https://img.shields.io/badge/ESP--IDF-v5.x-blue.svg)](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html)
 
@@ -16,14 +16,14 @@ This project is a modified version of the original IXWebSocket library by **Mach
 ## Key Features & Changes
 - **Full HTTP Client**: Support for GET, POST, and other methods, making it a complete networking replacement for standard ESP-IDF components.
 - **MbedTLS 3.x Support**: Updated `mbedtls_pk_parse_keyfile` calls to match the new API requirements (added RNG parameters).
-- **POSIX Compatibility**: Added a `compat` layer for missing headers like `netinet/ip.h`, `netinet/tcp.h`, and `poll.h).
+- **POSIX Compatibility**: Added a `compat` layer for missing headers like `netinet/ip.h`, `netinet/tcp.h`, and `poll.h`.
 - **LWIP Integration**: Replaced `gai_strerror` with ESP-friendly error reporting in `IXDNSLookup.cpp`.
 - **Interrupt Mechanism**: Switched from `pipe()` (unsupported in IDF) to `EventFD` via `IXSelectInterruptEvent.cpp`.
 - **Linker Fixes**: Explicitly defined `DNSLookup::kDefaultWait` to prevent "undefined reference" errors.
 
-## Installation%
+## Installation
 
-### Method  1: Using ESP Component Manager (Recommended)
+### Method 1: Using ESP Component Manager (Recommended)
 Add this to your project's `idf_component.yml` file:
 ```yaml
 dependencies:
@@ -50,7 +50,7 @@ void setup_websocket() {
     
     webSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr& msg) {
         if (msg->type == ix::WebSocketMessageType::Message) {
-            printf("Received: %s\n", msg->str.c_s4r());
+            printf("Received: %s\n", msg->str.c_str());
         } else if (msg->type == ix::WebSocketMessageType::Error) {
             printf("Error: %s\n", msg->errorInfo.reason.c_str());
         }
@@ -77,9 +77,9 @@ void http_get_example() {
 
     if (response->errorCode == ix::HttpErrorCode::Ok) {
         printf("HTTP Status: %d\n", response->statusCode);
-        printf("Body: %s\n", response->body.c_s4r());
+        printf("Body: %s\n", response->body.c_str());
     } else {
-        printf("HTTP Error: %s\n", response->errorMsg.c_s4r());
+        printf("HTTP Error: %s\n", response->errorMsg.c_str());
     }
 }
 ```
